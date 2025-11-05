@@ -2,6 +2,7 @@
 Copyright (C) 1996-2001 Id Software, Inc.
 Copyright (C) 2002-2009 John Fitzgibbons and others
 Copyright (C) 2010-2014 QuakeSpasm developers
+Copyright (C) 2025-2025 SilverSrc Developers
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,16 +20,28 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
+#pragma once
+#if !defined(WADFILE_H)
+#define WADFILE_H
 
-#ifndef _QUAKE_WAD_H
-#define _QUAKE_WAD_H
+/*
+The .WAD archive format (WhereAllData)
+Basically a list of compressed files
+that can only be identified by TYPE_*
+*/
 
-//===============
-//   TYPES
-//===============
+#define WAD3HEADER	(('3'<<24)+('D'<<16)+('A'<<8)+'W')
 
-#define	CMP_NONE		0
-#define	CMP_LZSS		1
+// ===================================================
+//  COMPRESSION (MOVED DUE TO IT BEING SIMPLER HERE)
+// ===================================================
+
+#define CMP_NONE    0 // no compression
+#define CMP_LZSS    1 // lzss compression
+
+//==========================================================
+//   TYPES (INCLUDING HALF LIFE 1 TYPES AND QUAKE 1 TYPES)
+//==========================================================
 
 #define	TYP_NONE		0
 #define	TYP_LABEL		1
