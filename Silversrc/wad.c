@@ -2,6 +2,7 @@
 Copyright (C) 1996-2001 Id Software, Inc.
 Copyright (C) 2002-2009 John Fitzgibbons and others
 Copyright (C) 2010-2014 QuakeSpasm developers
+Copyright (C) 2010-2025 SilverSrc developers
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -71,10 +72,11 @@ void W_LoadWadFile (void) //johnfitz -- filename is now hard-coded for honesty
 	wadinfo_t		*header;
 	int			i;
 	int			infotableofs;
-	const char		*filename = WADFILENAME;
+	const char		*filename = WADFILE_H;
 
 	//johnfitz -- modified to use malloc
 	//TODO: use cache_alloc
+	//TODO: make it so this supports WAD3
 	if (wad_base)
 		free (wad_base);
 	wad_base = COM_LoadMallocFile (filename, NULL);
@@ -96,7 +98,7 @@ void W_LoadWadFile (void) //johnfitz -- filename is now hard-coded for honesty
 		lump_p->filepos = LittleLong(lump_p->filepos);
 		lump_p->size = LittleLong(lump_p->size);
 		W_CleanupName (lump_p->name, lump_p->name);	// CAUTION: in-place editing!!!
-		if (lump_p->type == TYP_QPIC)
+		if (lump_p->type == TYP_GFXPIC)
 			SwapPic ( (qpic_t *)(wad_base + lump_p->filepos));
 	}
 }

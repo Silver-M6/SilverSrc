@@ -20,6 +20,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
+// this thing is the FUCKING bane of my FUCKING existence,
+// holy shit this caused me SO many FUCKING errors,
+// i rather get burned by a car engine while an ape shocks me to death,
+// holy shit i fucking hate this fucking shit too much, QUAKE ENGINE YOU MOTHERFUCKER
 #pragma once
 #if !defined(WADFILE_H)
 #define WADFILE_H
@@ -30,7 +34,16 @@ Basically a list of compressed files
 that can only be identified by TYPE_*
 */
 
-#define WAD3HEADER	(('3'<<24)+('D'<<16)+('A'<<8)+'W')
+#define IDWAD2HEADER	(('2'<<24)+('D'<<16)+('A'<<8)+'W')	// little-endian "WAD2" quake wads
+#define IDWAD3HEADER	(('3'<<24)+('D'<<16)+('A'<<8)+'W')	// little-endian "WAD3" half-life wads
+#define WAD3_NAMELEN	16
+
+// attribs
+#define ATTR_NONE		0	// allow to read-write
+#define ATTR_READONLY	BIT( 0 )	// don't overwrite this lump in anyway
+#define ATTR_COMPRESSED	BIT( 1 )	// not used for now, just reserved
+#define ATTR_HIDDEN		BIT( 2 )	// not used for now, just reserved
+#define ATTR_SYSTEM		BIT( 3 )	// not used for now, just reserved
 
 // ===================================================
 //  COMPRESSION (MOVED DUE TO IT BEING SIMPLER HERE)
@@ -46,14 +59,54 @@ that can only be identified by TYPE_*
 #define	TYP_NONE		0
 #define	TYP_LABEL		1
 
-#define	TYP_LUMPY		64				// 64 + grab command number
-#define	TYP_PALETTE		64
-#define	TYP_QTEX		65
-#define	TYP_QPIC		66
-#define	TYP_SOUND		67
-#define	TYP_MIPTEX		68
+#define TYP_ANY		-1	// any type can be accepted
+#define TYP_NONE		0	// unknown lump type
+#define TYP_LABEL		1	// legacy from Doom1. Empty lump - label (like P_START, P_END etc)
+#define TYP_PALETTE		64	// quake or half-life palette (768 bytes)
+#define TYP_DDSTEX		65	// contain DDS texture
+#define TYP_GFXPIC		66	// menu or hud image (not contain mip-levels)
+#define TYP_MIPTEX		67	// quake1 and half-life in-game textures with four miplevels
+#define TYP_SCRIPT		68	// contain script files
+#define TYP_COLORMAP2	69	// old stuff. build palette from LBM file (not used)
+#define TYP_QFONT		70	// half-life font (qfont_t)
 
-#define	WADFILENAME "gfx.wad" //johnfitz -- filename is now hard-coded for honesty
+#define WADFILE_H "gfx.wad"
+
+// .lmp image format
+typedef struct lmp_s
+{
+	unsigned int	width;
+	unsigned int	height;
+} lmp_t;
+
+// .mip format
+typedef struct mip_s
+{
+	char		name[16];
+	unsigned int	width;
+	unsigned int	height;
+	unsigned int	offsets[4];	// mipmaps
+} mip_t;
+// wad header half life struct
+typedef struct
+{
+	int		ident;		// should be WAD3
+	int		numlumps;		// num files
+	int		infotableofs;	// LUT offset
+} dwadinfo_t;
+
+// .wad half life struct ig
+typedef struct
+{
+	int		filepos;		// file offset in WAD
+	int		disksize;		// compressed or uncompressed
+	int		size;		// uncompressed
+	signed char	type;		// TYP_*
+	signed char	attribs;		// file attribs
+	signed char	pad0;
+	signed char	pad1;
+	char		name[WAD3_NAMELEN];	// must be null terminated
+} dlumpinfo_t;
 
 typedef struct
 {
