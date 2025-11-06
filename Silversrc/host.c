@@ -313,7 +313,7 @@ void Host_WriteConfiguration (void)
 
 //johnfitz -- also save fitzquake.rc
 #if 0
-		f = fopen (va("%s/fitzquake.rc", GAMENAME), "w"); //always save in id1
+		f = fopen (va("%s/fitzquake.rc", GAMENAME), "w"); //always save in valve
 		if (!f)
 		{
 			Con_Printf ("Couldn't write fitzquake.rc.\n");
@@ -754,7 +754,6 @@ void _Host_Frame (float time)
 	else
 		S_Update (vec3_origin, vec3_origin, vec3_origin, vec3_origin);
 
-	CDAudio_Update();
 
 	if (host_speeds.value)
 	{
@@ -867,7 +866,6 @@ void Host_Init (void)
 		SCR_Init ();
 		R_Init ();
 		S_Init ();
-		CDAudio_Init ();
 		BGM_Init();
 		Sbar_Init ();
 		CL_Init ();
@@ -935,7 +933,6 @@ void Host_Shutdown(void)
 		if (con_initialized)
 			History_Shutdown ();
 		BGM_Shutdown();
-		CDAudio_Shutdown ();
 		S_Shutdown ();
 		IN_Shutdown ();
 		VID_Shutdown();

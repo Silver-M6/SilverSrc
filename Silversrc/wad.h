@@ -20,10 +20,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-// this thing is the FUCKING bane of my FUCKING existence,
-// holy shit this caused me SO many FUCKING errors,
-// i rather get burned by a car engine while an ape shocks me to death,
-// holy shit i fucking hate this fucking shit too much, QUAKE ENGINE YOU MOTHERFUCKER
 #pragma once
 #if !defined(WADFILE_H)
 #define WADFILE_H
@@ -70,7 +66,7 @@ that can only be identified by TYPE_*
 #define TYP_COLORMAP2	69	// old stuff. build palette from LBM file (not used)
 #define TYP_QFONT		70	// half-life font (qfont_t)
 
-#define WADFILE_H "gfx.wad"
+#define WADFILE_H "gfx.wad"  // hardcoded bne
 
 // .lmp image format
 typedef struct lmp_s
@@ -90,6 +86,7 @@ typedef struct mip_s
 // wad header half life struct
 typedef struct
 {
+    char		identification[4]; // old code whining about this, yet again
 	int		ident;		// should be WAD3
 	int		numlumps;		// num files
 	int		infotableofs;	// LUT offset
@@ -123,14 +120,15 @@ typedef struct
 
 typedef struct
 {
-	int			filepos;
-	int			disksize;
-	int			size;					// uncompressed
-	char		type;
-	char		compression;
-	char		pad1, pad2;
-	char		name[16];				// must be null terminated
-} lumpinfo_t;
+	int		filepos;		// file offset in WAD
+	int		disksize;		// compressed or uncompressed
+	int		size;		// uncompressed
+    char	type;		// TYP_*
+    char	attribs;		// file attribs
+    char	pad0;
+    char	pad1;
+	char		name[WAD3_NAMELEN];	// must be null terminated
+} lumpinfo_t; // for compatibility's sake
 
 extern	int			wad_numlumps;
 extern	lumpinfo_t	*wad_lumps;
