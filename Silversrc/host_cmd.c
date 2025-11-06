@@ -138,7 +138,7 @@ void ExtraMaps_Init (void)
 	pack_t		*pak;
 	int		i;
 
-	// we don't want to list the maps in id1 pakfiles,
+	// we don't want to list the maps in valve pakfiles,
 	// because these are not "add-on" levels
 	q_snprintf (ignorepakdir, sizeof(ignorepakdir), "/%s/", GAMENAME);
 
@@ -341,7 +341,7 @@ void DemoList_Init (void)
 	pack_t		*pak;
 	int		i;
 
-	// we don't want to list the demos in id1 pakfiles,
+	// we don't want to list the demos in valve pakfiles,
 	// because these are not "add-on" demos
 	q_snprintf (ignorepakdir, sizeof(ignorepakdir), "/%s/", GAMENAME);
 
