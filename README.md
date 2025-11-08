@@ -7,7 +7,11 @@ SilverSrc <img width="16" height="16" alt="Untitled101_20251103155302" src="http
 
 # FAQ
 - Q: Compatibility list?
-- A: its a work in progress right now, half life day one is the one thats most tested
+- A: Half Life: Day One is the most tested, A Compatibility List will be coming soon.
+----
+- Q: Where is the progress status?
+- A: [Here](https://github.com/Silver-M6/SilverSrc/wiki/Roadmap)
+----
 
 # ScreenShots:
 <img width="1440" height="900" alt="image" src="https://github.com/user-attachments/assets/3ccfa2ce-7b42-4d7b-bf98-2d9c96b01776" />
