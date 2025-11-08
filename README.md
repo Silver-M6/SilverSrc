@@ -8,7 +8,7 @@ SilverSrc <img width="16" height="16" alt="Untitled101_20251103155302" src="http
 
 # FAQ
 - Q: Where is the progress status?
-- A: [Here](https://github.com/Silver-M6/SilverSrc/wiki/Roadmap)
+- A: [Here](https://github.com/Silver-M6/SilverSrc/wiki/Roadmap#silversrc-rewritten)
 ----
 
 # Screenshots:
