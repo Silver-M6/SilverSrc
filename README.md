@@ -1,3 +1,7 @@
+This Project has been abandoned due to it being too much work and me being lazy
+Now no, this wont be the end of Silversrc, i will come back to it when i learn C and making stuff
+-------------------------------------------------------------------------------
+
 
 SilverSrc <img width="16" height="16" alt="Untitled101_20251103155302" src="https://github.com/user-attachments/assets/49934851-94cc-40a9-9544-13cbcd50449b" />
 (pronounced [ˈsɪlvə sɔːs]) Is a fork of QuakeSpasm 0.92.0 that adds Goldsrc compatibility (DOES NOT SUPPORT QUAKE OR ITS MODS), and is a learning project
